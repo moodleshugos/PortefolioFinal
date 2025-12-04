@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio • Projetos Pessoais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-primary: #f5f5f7;
+      --bg-secondary: #e8e8ed;
+      --bg-header: #ffffff;
+      --text-primary: #1d1d1f;
+      --text-secondary: #86868b;
+      --accent: #0080ff;
+      --accent-hover: #0080ff;
+      --card-bg: rgba(255, 255, 255, 0.8);
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--bg-header);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+      padding: 0 5%;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 140px 5% 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    /* Projects Grid */
+    .projects-section {
+      padding: 0 5% 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-thumb {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-thumb {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-tagline {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    /* Main Content Wrapper */
+    .main-content {
+      flex: 1;
+    }
+
+    /* Footer Melhorado */
+    footer {
+      background: linear-gradient(135deg, var(--bg-secondary) 0%, #e0e0e5 100%);
+      padding: 3rem 5% 1.5rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .footer-brand h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 400px;
+    }
+
+    .footer-contact h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .contact-item:hover {
+      color: var(--accent);
+    }
+
+    .contact-icon {
+      width: 16px;
+      text-align: center;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .copyright {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-links {
+        gap: 1.5rem;
+      }
+      
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+      
+      .footer-brand p {
+        max-width: none;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 120px 5% 60px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .header-container {
+        height: 60px;
+      }
+      
+      .logo {
+        font-size: 1.25rem;
+      }
+      
+      .nav-link {
+        font-size: 0.9rem;
+      }
+      
+      .footer-container {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo">Portfólio</a>
+      <nav class="nav-links">
+        <a href="sobre.html" class="nav-link">Sobre Mim</a>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1 class="fade-in-up">Hugo Gonçalves · Designer Gráfico</h1>
+      <p class="fade-in-up delay-1">Os meus projetos, entre conceito, forma e detalhe.</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+      <h2 class="section-title fade-in-up delay-2">Projetos</h2>
+      <div class="projects-grid">
+        <!-- Projeto 1 -->
+        <a href="project1.html" class="project-card fade-in-up delay-1">
+          <img
+            src="imagens/skatecapa.jpg"
+            alt="Thumbnail do Projeto 1"
+            class="project-thumb"
+          />
+          <div class="project-content">
+            <h3 class="project-title">Posters de Skate</h3>
+            <p class="project-tagline">Exploração de criatividade de um tema.</p>
+          </div>
+        </a>
+
+        <!-- Projeto 2 -->
+        <a href="project2.html" class="project-card fade-in-up delay-2">
+          <img
+            src="imagens/spotifyyy.jpg"
+            alt="Thumbnail do Projeto 2"
+            class="project-thumb"
+          />
+          <div class="project-content">
+            <h3 class="project-title">Campanha Spotify</h3>
+            <p class="project-tagline">Nova gama de designs de capas para álbuns.</p>
+          </div>
+        </a>
+
+        <!-- Projeto 3 -->
+        <a href="project3.html" class="project-card fade-in-up delay-3">
+          <img
+            src="imagens/carharttcapa.jpg"
+            alt="Thumbnail do Projeto 3"
+            class="project-thumb"
+          />
+          <div class="project-content">
+            <h3 class="project-title">Catálogo Carhartt WIP</h3>
+            <p class="project-tagline">Projeto editorial fictício Summer '24.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer Melhorado -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>Sobre o Portefólio</h3>
+        <p>O objetivo deste portefólio é apresentar os meus projetos e habilidades como designer gráfico, projetos esses de prática, não comerciais. Marcas usadas apenas como referência.</p>
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-envelope contact-icon"></i>
+            <span>work.hugotorres@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone contact-icon"></i>
+            <span>+351 961 624 899</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="copyright">
+        &copy; 2025 Hugo Gonçalves. Todos os direitos reservados.
+      </div>
+      <div class="footer-links">
+        <a href="sobre.html" class="footer-link">Sobre Mim</a>
+        <a href="contacto.html" class="footer-link">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Adicionar classe de animação aos elementos quando entram na viewport
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in-up');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      fadeElements.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo Carhartt WIP • Portfólio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #f5f5f7;
+      --bg-secondary: #e8e8ed;
+      --bg-header: #ffffff;
+      --text-primary: #1d1d1f;
+      --text-secondary: #86868b;
+      --accent: #0080ff;
+      --accent-hover: #0080ff;
+      --carhartt-brown: #8B4513;
+      --carhartt-dark: #2c2c2c;
+      --card-bg: rgba(255, 255, 255, 0.8);
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--bg-header);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      z-index: 1000;
+      padding: 0 5%;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+      transform: translateX(-5px);
+    }
+
+    .main-content {
+      padding: 120px 5% 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .page-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      max-width: 600px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      height: 60vh;
+      min-height: 500px;
+      background: linear-gradient(135deg, var(--carhartt-dark) 0%, var(--carhartt-brown) 100%);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -2px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: white;
+      color: var(--carhartt-dark);
+      padding: 1rem 2rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Project Description */
+    .project-description {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      margin-bottom: 4rem;
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .description-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--carhartt-dark);
+    }
+
+    .description-text {
+      margin-bottom: 1.5rem;
+    }
+
+    .project-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: var(--carhartt-brown);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .detail-value {
+      font-size: 1.1rem;
+    }
+
+    /* Catalog Grid */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+
+    .catalog-item {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .catalog-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .catalog-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .catalog-item:hover .catalog-image {
+      transform: scale(1.03);
+    }
+
+    .catalog-info {
+      padding: 1.5rem;
+    }
+
+    .catalog-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--carhartt-dark);
+    }
+
+    .catalog-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 2rem;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    /* Animações */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.3s;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .catalog-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-section {
+        height: 50vh;
+        min-height: 400px;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.25rem;
+      }
+      
+      .project-description {
+        padding: 2rem;
+      }
+      
+      .catalog-image {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .main-content {
+        padding: 100px 5% 60px;
+      }
+      
+      .project-description {
+        padding: 1.5rem;
+      }
+      
+      .description-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">Portfólio</a>
+      <nav class="nav-links">
+        <a href="sobre.html" class="nav-link">Sobre Mim</a>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <a href="index.html" class="back-link fade-in-up">
+      <span>←</span>
+      <span>Voltar ao Portfólio</span>
+    </a>
+
+    <h1 class="page-title fade-in-up">Catálogo Carhartt WIP</h1>
+    <p class="page-subtitle fade-in-up delay-1">Catálogo de fotos para projeto universitário.</p>
+
+    <!-- Hero Section -->
+    <section class="hero-section fade-in-up">
+      <div class="hero-content">
+        <h2 class="hero-title">VEM DESCOBRIR A NOVA COLEÇÃO</h2>
+        <p class="hero-subtitle">Carhartt WIP Summer '24</p>
+        <a href="#catalog" class="hero-cta">Explorar Catálogo</a>
+      </div>
+    </section>
+
+    <!-- Project Description -->
+    <section class="project-description fade-in-up delay-1">
+      <h2 class="description-title">Sobre o Projeto</h2>
+      <p class="description-text">
+        Este projeto consiste na criação de um catálogo editorial fictício para a marca Carhartt WIP, 
+        desenvolvido como projeto final da cadeira de Composição e Fotografia. O objetivo foi criar 
+        um álbum de fotografias para um anúncio fictício que capturasse a essência urbana e autêntica 
+        da marca.
+      </p>
+      <p class="description-text">
+        Todas as fotografias foram produzidas de forma autónoma, desde a direção criativa até à 
+        pós-produção, explorando conceitos de moda streetwear, storytelling visual e apresentação 
+        de produto. O resultado é um catálogo coerente que comunica a coleção Summer '24 com uma 
+        linguagem visual moderna e autêntica.
+      </p>
+      
+      <div class="project-details">
+        <div class="detail-item">
+          <span class="detail-label">Disciplina</span>
+          <span class="detail-value">Composição e Fotografia</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Ano</span>
+          <span class="detail-value">2024</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Cliente</span>
+          <span class="detail-value">Carhartt WIP</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Tipo</span>
+          <span class="detail-value">Projeto Editorial Fictício</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Grid -->
+    <section id="catalog" class="catalog-section">
+      <h2 class="description-title fade-in-up">Páginas do Catálogo</h2>
+      <div class="catalog-grid">
+        <!-- Página 1 -->
+        <div class="catalog-item fade-in-up delay-1">
+          <img src="imagens/catalogo1.png" alt="Capa do Catálogo Carhartt WIP" class="catalog-image">
+          <div class="catalog-info">
+            <h3 class="catalog-title">Capa do Catálogo</h3>
+            <p class="catalog-description">Apresentação da nova coleção Summer '24 com design impactante.</p>
+          </div>
+        </div>
+
+        <!-- Página 2 -->
+        <div class="catalog-item fade-in-up delay-2">
+          <img src="imagens/catalogo2.png" alt="Look Urbano Masculino" class="catalog-image">
+          <div class="catalog-info">
+            <h3 class="catalog-title">Look Urbano Masculino</h3>
+            <p class="catalog-description">Destaque para as peças essenciais da coleção masculina.</p>
+          </div>
+        </div>
+
+        <!-- Página 3 -->
+        <div class="catalog-item fade-in-up delay-1">
+          <img src="imagens/catalogo3.png" alt="Coleção Completa" class="catalog-image">
+          <div class="catalog-info">
+            <h3 class="catalog-title">Coleção Completa</h3>
+            <p class="catalog-description">Visão geral das principais peças da temporada.</p>
+          </div>
+        </div>
+
+        <!-- Página 4 -->
+        <div class="catalog-item fade-in-up delay-2">
+          <img src="imagens/catalogo4.png" alt="Detalhes de Costura" class="catalog-image">
+          <div class="catalog-info">
+            <h3 class="catalog-title">Detalhes de Costura</h3>
+            <p class="catalog-description">Close-ups que destacam a qualidade do acabamento.</p>
+          </div>
+        </div>
+
+        <!-- Página 5 -->
+        <div class="catalog-item fade-in-up delay-1">
+          <img src="imagens/catalogo5.png" alt="Styling Urbano" class="catalog-image">
+          <div class="catalog-info">
+            <h3 class="catalog-title">Styling Urbano</h3>
+            <p class="catalog-description">Combinações inspiradoras para o dia a dia.</p>
+          </div>
+        </div>
+
+        <!-- Página 6 -->
+        <div class="catalog-item fade-in-up delay-2">
+          <img src="imagens/catalogo6.png" alt="Ambientação Industrial" class="catalog-image">
+          <div class="catalog-info">
+            <h3 class="catalog-title">Ambientação Industrial</h3>
+            <p class="catalog-description">Fotografias em locações que refletem a essência da marca.</p>
+          </div>
+        </div>
+
+        <!-- Página 7 -->
+        <div class="catalog-item fade-in-up delay-1">
+          <img src="imagens/catalogo7.png" alt="Detalhes Técnicos" class="catalog-image">
+          <div class="catalog-info">
+            <h3 class="catalog-title">Detalhes Técnicos</h3>
+            <p class="catalog-description">Foco nas características funcionais das peças.</p>
+          </div>
+        </div>
+
+        <!-- Página 8 -->
+        <div class="catalog-item fade-in-up delay-2">
+          <img src="imagens/catalogo8.png" alt="Lookbook Final" class="catalog-image">
+          <div class="catalog-info">
+            <h3 class="catalog-title">Lookbook Final</h3>
+            <p class="catalog-description">Encerramento do catálogo com os melhores looks.</p>
+          </div>
+        </div>
+
+        <!-- Página 9 -->
+        <div class="catalog-item fade-in-up delay-1">
+          <img src="imagens/catalogo9.png" alt="Campanha Publicitária" class="catalog-image">
+          <div class="catalog-info">
+            <h3 class="catalog-title">Campanha Publicitária</h3>
+            <p class="catalog-description">Peças chave destacadas em contexto urbano.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close">×</button>
+      <img src="" alt="" class="lightbox-image" id="lightbox-image">
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in-up');
+      const catalogItems = document.querySelectorAll('.catalog-item');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const lightboxClose = document.getElementById('lightbox-close');
+      
+      // Animation on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      fadeElements.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(el);
+      });
+
+      // Lightbox functionality
+      catalogItems.forEach(item => {
+        const img = item.querySelector('.catalog-image');
+        img.addEventListener('click', function() {
+          lightboxImage.src = this.src;
+          lightboxImage.alt = this.alt;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+
+      lightboxClose.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeLightbox();
+        }
+      });
+
+      // Smooth scroll para o catálogo
+      const ctaButton = document.querySelector('.hero-cta');
+      ctaButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('catalog').scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
